@@ -1,25 +1,15 @@
-"use client";
-// components/BackgroundAnimation.jsx
-// Subtle CSS-only dot grid with a slow drifting radial glow
-// Performance: zero JS animation loop — pure CSS, GPU-composited only
-// Color palette: #0f0f0d base, #00E676 green accent, #00BCD4 cyan, #E040FB purple
-
 export default function BackgroundAnimation() {
   return (
     <>
-      {/* ── 1. Dot grid ── */}
-      <div
-        aria-hidden="true"
-        className="dot-grid"
-      />
+      {/* Dot grid */}
+      <div aria-hidden="true" className="dot-grid" />
 
-      {/* ── 2. Slow drifting glow orbs ── */}
-      <div aria-hidden="true" className="orb orb-green" />
-      <div aria-hidden="true" className="orb orb-cyan" />
-      <div aria-hidden="true" className="orb orb-purple" />
+      {/* Subtle drifting glow orbs */}
+      <div aria-hidden="true" className="orb orb-white" />
+      <div aria-hidden="true" className="orb orb-gray" />
+      <div aria-hidden="true" className="orb orb-light" />
 
       <style>{`
-        /* shared: fixed, full viewport, no pointer events */
         .dot-grid,
         .orb {
           position: fixed;
@@ -28,101 +18,130 @@ export default function BackgroundAnimation() {
           z-index: 0;
         }
 
-        /* ── Dot grid ──
-           SVG data-URI: 1px green dot on transparent, 28px repeat
-           Opacity kept very low so it reads as texture, not pattern */
+        /* Subtle white dot grid */
         .dot-grid {
           background-image: radial-gradient(
             circle,
-            rgba(0, 230, 118, 0.30) 1px,
+            rgba(255, 255, 255, 0.22) 1px,
             transparent 1px
           );
           background-size: 28px 28px;
-          opacity: 0.45;
+          opacity: 0.35;
         }
 
-        /* ── Orb base ──
-           Large radial blur — no canvas, no JS, GPU opacity only */
+        /* Shared glow settings */
         .orb {
           border-radius: 50%;
-         
           opacity: 0;
           animation-timing-function: ease-in-out;
           animation-iteration-count: infinite;
           animation-direction: alternate;
         }
 
-        /* Green orb — top-left drift */
-        .orb-green {
+        /* White glow — top-left */
+        .orb-white {
           width: 55vw;
           height: 55vw;
           top: -15vw;
           left: -10vw;
           background: radial-gradient(
             circle,
-            rgba(0, 230, 118, 0.07) 0%,
+            rgba(255, 255, 255, 0.065) 0%,
             transparent 70%
           );
-          animation-name: drift-green;
+          animation-name: drift-white;
           animation-duration: 22s;
           animation-delay: 0s;
         }
 
-        /* Cyan orb — bottom-right drift */
-        .orb-cyan {
+        /* Gray glow — bottom-right */
+        .orb-gray {
           width: 45vw;
           height: 45vw;
           bottom: -10vw;
           right: -8vw;
           background: radial-gradient(
             circle,
-            rgba(0, 188, 212, 0.06) 0%,
+            rgba(156, 163, 175, 0.065) 0%,
             transparent 70%
           );
-          animation-name: drift-cyan;
+          animation-name: drift-gray;
           animation-duration: 28s;
           animation-delay: -8s;
         }
 
-        /* Purple orb — center drift */
-        .orb-purple {
+        /* Soft silver glow — center */
+        .orb-light {
           width: 40vw;
           height: 40vw;
           top: 30vh;
           left: 30vw;
           background: radial-gradient(
             circle,
-            rgba(224, 64, 251, 0.045) 0%,
+            rgba(209, 213, 219, 0.04) 0%,
             transparent 70%
           );
-          animation-name: drift-purple;
+          animation-name: drift-light;
           animation-duration: 34s;
           animation-delay: -14s;
         }
 
-        /* Keyframes — translate only (GPU compositor, no repaints) */
-        @keyframes drift-green {
-          0%   { opacity: 0.6; transform: translate(0,    0);    }
-          50%  { opacity: 0.9; transform: translate(6vw,  8vh);  }
-          100% { opacity: 0.6; transform: translate(3vw,  14vh); }
+        /* Smooth GPU-friendly drifting animations */
+        @keyframes drift-white {
+          0% {
+            opacity: 0.6;
+            transform: translate(0, 0);
+          }
+          50% {
+            opacity: 0.9;
+            transform: translate(6vw, 8vh);
+          }
+          100% {
+            opacity: 0.6;
+            transform: translate(3vw, 14vh);
+          }
         }
 
-        @keyframes drift-cyan {
-          0%   { opacity: 0.5; transform: translate(0,    0);     }
-          50%  { opacity: 0.8; transform: translate(-8vw, -6vh);  }
-          100% { opacity: 0.5; transform: translate(-4vw, -12vh); }
+        @keyframes drift-gray {
+          0% {
+            opacity: 0.5;
+            transform: translate(0, 0);
+          }
+          50% {
+            opacity: 0.8;
+            transform: translate(-8vw, -6vh);
+          }
+          100% {
+            opacity: 0.5;
+            transform: translate(-4vw, -12vh);
+          }
         }
 
-        @keyframes drift-purple {
-          0%   { opacity: 0.4; transform: translate(0,   0);    }
-          50%  { opacity: 0.7; transform: translate(5vw, -8vh); }
-          100% { opacity: 0.4; transform: translate(-5vw, 6vh); }
+        @keyframes drift-light {
+          0% {
+            opacity: 0.4;
+            transform: translate(0, 0);
+          }
+          50% {
+            opacity: 0.7;
+            transform: translate(5vw, -8vh);
+          }
+          100% {
+            opacity: 0.4;
+            transform: translate(-5vw, 6vh);
+          }
         }
 
-        /* Reduce motion: freeze everything */
+        /* Respect reduced-motion preferences */
         @media (prefers-reduced-motion: reduce) {
-          .dot-grid { opacity: 0.2; }
-          .orb { animation: none; opacity: 0.4; }
+          .dot-grid {
+            opacity: 0.2;
+          }
+
+          .orb {
+            animation: none;
+            opacity: 0.4;
+          }
         }
       `}</style>
     </>

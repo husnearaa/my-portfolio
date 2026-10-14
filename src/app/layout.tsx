@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
 import BackgroundAnimation from "@/components/BackgroundAnimation";
-// import CustomCursor from "@/components/CustomCursor";
+import CustomCursor from "@/components/CustomCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#0f0f0d] cursor-none">
-        {/* {/* <CustomCursor /> */}
+         <CustomCursor />
         <BackgroundAnimation /> 
         {children}</body>
     </html>
