@@ -3,6 +3,7 @@
 import Navbar from "@/components/Navbar";
 import Lenis from "lenis";
 import { useEffect } from "react";
+import HeroSection from "@/components/HeroSection";
 // import {projects as projectData} from '../../data'
 
 
@@ -21,7 +22,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-     
+     <HeroSection />
     </>
   
   );

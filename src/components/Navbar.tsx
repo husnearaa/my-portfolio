@@ -52,16 +52,6 @@ const bottomNavLinks = [
     ),
   },
   {
-    label: "GitHub",
-    href: "#github",
-    id: "github",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-      </svg>
-    ),
-  },
-  {
     label: "Contact",
     href: "#contact",
     id: "contact",
@@ -153,7 +143,7 @@ const Navbar = () => {
 
           {/* Available badge */}
           <div className="flex items-center gap-2 w-fit">
-            <span className="font-mono text-lg text-white tracking-wide">Husneara</span>
+            <span className="font-mono text-xl text-white tracking-wide">Husneara</span>
           </div>
 
           <div className='flex gap-4 items-center'>
@@ -167,14 +157,14 @@ const Navbar = () => {
                     href={link.href}
                     onClick={() => handleClick(link.id)}
                     className={`font-mono text-xs lg:text-sm transition-colors duration-200 flex items-center gap-1.5 group ${
-                      isActive ? "text-[#00E676]" : "text-[#d4d4d4] hover:text-[#00E676]"
+                      isActive ? "text-white" : "text-[#d4d4d4] hover:text-white"
                     }`}
                   >
                     <span className={`transition-colors ${
-                      isActive ? "text-[#00E676]" : "text-[#00E676]/20 group-hover:text-[#00E676]/60"
+                      isActive ? "text-white" : "text-[#d4d4d4]/20 group-hover:text-[#d4d4d4]/60"
                     }`}>›</span>
                     {link.label}
-                    {isActive && <span className="w-1 h-1 rounded-full bg-[#00E676] ml-0.5" />}
+                    {isActive && <span className="w-1 h-1 rounded-full bg-white ml-0.5" />}
                   </Link>
                 );
               })}
@@ -192,7 +182,7 @@ const Navbar = () => {
         {moreOpen && (
           <div
             ref={moreRef}
-            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-40 rounded-sm border border-[#00E676]/20 bg-[#0f0f0d]/95 backdrop-blur-md overflow-hidden shadow-xl"
+            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-40 rounded-sm border border-text-[#d4d4d4]/20 bg-[#0f0f0d]/95 backdrop-blur-md overflow-hidden shadow-xl"
           >
             {moreLinks.map((link) => {
               const isActive = activeSection === link.id;
@@ -202,12 +192,12 @@ const Navbar = () => {
                   href={link.href}
                   onClick={() => handleClick(link.id)}
                   className={`flex items-center gap-2 px-4 py-3 font-mono text-xs border-b border-[#00E676]/08 last:border-0 transition-colors duration-200 ${
-                    isActive ? "text-[#00E676] bg-[#00E676]/08" : "text-[#8a9a8e] hover:text-[#00E676] hover:bg-[#00E676]/05"
+                    isActive ? "text-white bg-[#00E676]/08" : "text-[#8a9a8e] hover:text-white hover:bg-[#00E676]/05"
                   }`}
                 >
-                  <span className="text-[#00E676]/40">›</span>
+                  <span className="text-[#d4d4d4]/40">›</span>
                   {link.label}
-                  {isActive && <span className="w-1 h-1 rounded-full bg-[#00E676] ml-auto" />}
+                  {isActive && <span className="w-1 h-1 rounded-full bg-white ml-auto" />}
                 </Link>
               );
             })}
@@ -215,7 +205,7 @@ const Navbar = () => {
         )}
 
         {/* Bottom bar */}
-        <div className="flex items-center justify-around bg-[#0a0a08]/95 backdrop-blur-md border-t border-[#00E676]/10 px-2 py-2">
+        <div className="flex items-center justify-around bg-[#0a0a08]/95 backdrop-blur-md border-t border-[#d4d4d4]/10 px-2 py-2">
 
           {/* Mobile: ৫টা link + More button */}
           <div className="flex sm:hidden items-center justify-around w-full">
@@ -227,11 +217,11 @@ const Navbar = () => {
                   href={link.href}
                   onClick={() => handleClick(link.id)}
                   className={`flex flex-col items-center gap-1 px-3 py-1 rounded-sm transition-all duration-200 ${
-                    isActive ? "text-[#00E676]" : "text-[#8a9a8e]/50 hover:text-[#8a9a8e]"
+                    isActive ? "text-white" : "text-[#8a9a8e]/50 hover:text-white"
                   }`}
                 >
                   <span className={`w-1 h-1 rounded-full transition-all duration-200 ${
-                    isActive ? "bg-[#00E676]" : "bg-transparent"
+                    isActive ? "bg-white" : "bg-transparent"
                   }`} />
                   {link.icon}
                   <span className="font-mono text-[9px] tracking-wide">{link.label}</span>
@@ -242,7 +232,7 @@ const Navbar = () => {
             <button
               onClick={() => setMoreOpen((prev) => !prev)}
               className={`flex flex-col items-center gap-1 px-3 py-1 rounded-sm transition-all duration-200 ${
-                moreOpen ? "text-[#00E676]" : "text-[#8a9a8e]/50 hover:text-[#8a9a8e]"
+                moreOpen ? "text-white" : "text-[#8a9a8e]/50 hover:text-white"
               }`}
             >
               <span className="w-1 h-1 rounded-full bg-transparent" />
@@ -272,11 +262,11 @@ const Navbar = () => {
                   href={link.href}
                   onClick={() => handleClick(link.id)}
                   className={`flex flex-col items-center gap-1 px-2 py-1 rounded-sm transition-all duration-200 ${
-                    isActive ? "text-[#00E676]" : "text-[#8a9a8e]/50 hover:text-[#8a9a8e]"
+                    isActive ? "text-white" : "text-[#8a9a8e]/50 hover:text-[#8a9a8e]"
                   }`}
                 >
                   <span className={`w-1 h-1 rounded-full transition-all duration-200 ${
-                    isActive ? "bg-[#00E676]" : "bg-transparent"
+                    isActive ? "bg-white" : "bg-transparent"
                   }`} />
                   {icon}
                   <span className="font-mono text-[9px] tracking-wide">{link.label}</span>
