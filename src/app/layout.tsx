@@ -1,34 +1,34 @@
-import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
+import type { ReactNode } from "react";
 import "./globals.css";
-import { Toaster } from "sonner";
-import ReduxProvider from "@/redux/ReduxProvider";
+// import BackgroundAnimation from "@/components/BackgroundAnimation";
+// import CustomCursor from "@/components/CustomCursor";
 
-const roboto = Roboto({
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  weight: ["100", "300", "400", "500", "700", "900"],
 });
 
-export const metadata: Metadata = {
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata = {
   title: "Husneara",
-  description: "My portfolio",
+  description: "Full Stack Web Developer",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${roboto.className} antialiased`}
-        suppressHydrationWarning
-      >
-        <Toaster position="bottom-right" richColors />
-       {children}
-      </body>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col bg-[#0f0f0d] cursor-none">
+        {/* <CustomCursor />
+        <BackgroundAnimation/> */}
+        {children}</body>
     </html>
   );
 }
-
