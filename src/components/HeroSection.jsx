@@ -1,18 +1,23 @@
-'use client'
+"use client";
 
 import { Button } from "@heroui/react";
 import Link from "next/link";
 import Image from "next/image";
-import { FaGithub, FaLinkedin, FaFacebook, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
-
-import myProfileImg from '@/assets/profile-Img.png';
+import myProfileImg from "@/assets/profile-Img.png";
+import { X } from "lucide-react";
 
 const socialLinks = [
   { name: "GitHub", href: "https://github.com/husnearaa", icon: FaGithub },
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/hosneara-popy/", icon: FaLinkedin },
-//   { name: "Facebook", href: "https://www.facebook.com/abdullahalmahmud1997", icon: FaFacebook },
-//   { name: "WhatsApp", href: "https://wa.me/8801683367535", icon: FaWhatsapp },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/hosneara-popy/",
+    icon: FaLinkedin,
+  },
+    { name: "X", href: "https://x.com/hosneara_popy", icon: FaSquareXTwitter },
+    { name: "WhatsApp", href: "https://wa.me/8801629270655", icon: FaWhatsapp },
 ];
 
 const skillStack = ["Next.js", "React", "Node.js", "Express.js", "PostgreSQL"];
@@ -21,11 +26,9 @@ const HeroSection = () => {
   return (
     <div id="home" className="min-h-screen">
       <section className="w-11/12 mx-auto flex flex-col items-center px-6 md:px-16 lg:px-24">
-
         <div className="w-full mt-4"></div>
 
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mt-6">
-
           {/* ── Top: Photo (background removed, no frame/circle) ── */}
           <div className="flex justify-center lg:justify-end order-1 lg:order-2">
             <div className="relative w-72 h-72 md:w-96 md:h-96 lg:w-[460px] lg:h-[460px] xl:w-[520px] xl:h-[520px]">
@@ -44,7 +47,6 @@ const HeroSection = () => {
 
           {/* ── Bottom: Text Content ── */}
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-6 order-2 lg:order-1 pb-6 lg:pb-12">
-
             {/* Title */}
             <h1 className="font-mono text-4xl md:text-5xl lg:text-5xl font-black text-white leading-tight tracking-tight">
               {/* <span className="text-white">{">_"}</span> */}
@@ -54,8 +56,10 @@ const HeroSection = () => {
 
             {/* Subtitle */}
             <p className="text-gray-400 text-base md:text-lg leading-relaxed max-w-md font-mono">
-              Building Modern, Fast &amp; Scalable Web Applications.{" "}
-              <span className="text-white">Let&apos;s Work Together.</span>
+              Building Innovative, Scalable & User-Friendly Web Applications.
+              <span className="text-white">
+                Let’s Turn Your Ideas into Powerful Web Experiences!
+              </span>
             </p>
 
             {/* CTA Buttons */}
@@ -65,15 +69,23 @@ const HeroSection = () => {
                 <Button
                   size="lg"
                   radius="sm"
-                  className="bg-white text-black font-mono font-bold tracking-wide hover:bg-gray-200 transition-colors px-8 py-3 text-sm"
+                  className="bg-white text-black font-mono font-bold tracking-wide hover:bg-gray-200 transition-colors px-13 rounded-sm py-3 text-sm"
                 >
-                  <a
+                  {/* <a
                     href="/Husneara_FullStack_Resume.pdf"
                     download="Husneara_FullStack_Resume.pdf"
                     className="inline-flex items-center"
                   >
-                    ↓ Download Resume
-                  </a>
+                    View Resume
+                  </a> */}
+                  <Link
+                    href="https://drive.google.com/file/d/1x-ZVjqVuyLda2nAM_-Lx0DBrpMXDYbYg/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center"
+                  >
+                    View Resume
+                  </Link>
                 </Button>
               </div>
 
