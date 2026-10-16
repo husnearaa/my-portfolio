@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Page background -->
+  <rect x="10" y="6" width="38" height="50" rx="3" fill="#00E67615" stroke="#00E676" stroke-width="1.5"/>
+  <!-- Fold corner -->
+  <path d="M38 6 L48 16 L38 16 Z" fill="#00E67630" stroke="#00E676" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- Bengali ব character (stylized) -->
+  <text x="20" y="36" font-family="serif" font-size="22" fill="#00E676" font-weight="bold">ব</text>
+  <!-- Decorative lines (text lines) -->
+  <line x1="16" y1="44" x2="42" y2="44" stroke="#00E67650" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="16" y1="49" x2="34" y2="49" stroke="#00E67650" stroke-width="1.2" stroke-linecap="round"/>
+</svg>
