@@ -8,6 +8,7 @@ import AboutSection from "@/components/AboutSection";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import { projects as projectData } from "../../public/data";
 import SkillsSection from "@/components/SkillsSection";
+import ExperienceEducationSection from "@/components/ExperienceEducationSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -31,6 +32,7 @@ export default function Home() {
       <AboutSection />
       <FeaturedProjects data={projects} />
       <SkillsSection />
+      <ExperienceEducationSection />
       <ContactSection />
       <Footer />
       < ScrollToTop />
