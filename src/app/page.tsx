@@ -5,10 +5,11 @@ import Lenis from "lenis";
 import { useEffect } from "react";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-// import {projects as projectData} from '../../data'
+import FeaturedProjects from "@/components/FeaturedProjects";
+import {projects as  projectData} from '../../public/data'
 
 
-// const projects = projectData
+const projects = projectData
 
 export default function Home() {
   useEffect(() => {
@@ -25,6 +26,7 @@ export default function Home() {
       <Navbar />
      <HeroSection />
      <AboutSection />
+    <FeaturedProjects data={projects}/>
     </>
   
   );

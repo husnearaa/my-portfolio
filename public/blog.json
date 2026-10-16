@@ -1,0 +1,69 @@
+[
+  {
+    "blogImage": "https://i.postimg.cc/brz6T2PT/Redux.webp",
+    "title": "Simplifying Redux: Unlocking the Power of State Management",
+    "author": "Hosneara",
+    "category": "State Management",
+    "platform": "medium",
+    "date": "Jan 10, 2025",
+    "readTime": "8 min read",
+    "excerpt": "Redux can feel overwhelming at first, but once you understand its core principles, it becomes one of the most powerful tools in your React toolkit.",
+    "featured": true,
+    "live_link": "https://medium.com/@husneara/simplifying-redux-unlocking-the-power-of-state-management-eee34c17dda7"
+  },
+  {
+    "blogImage": "https://i.postimg.cc/QC8BScM0/NextJS.webp",
+    "title": "Navigating Next.js — My Journey to Simplifying Programming",
+    "author": "Hosneara",
+    "category": "Next.js",
+    "platform": "medium",
+    "date": "Feb 3, 2025",
+    "readTime": "6 min read",
+    "excerpt": "Next.js changed the way I think about building web apps — here's how I went from confusion to confidence with server components, routing, and more.",
+    "live_link": "https://medium.com/@husneara/navigating-next-js-my-journey-to-simplifying-programming-96a23450cc29"
+  },
+  {
+    "blogImage": "https://i.postimg.cc/4dtvjvsG/EDA.webp",
+    "title": "Event-Driven Architecture (EDA) in Node.js: Modern Strategies and Challenges",
+    "author": "Hosneara",
+    "category": "Event Driven Architecture",
+    "platform": "medium",
+    "date": "Feb 18, 2025",
+    "readTime": "10 min read",
+    "excerpt": "Event-driven architecture unlocks scalability and decoupling in Node.js apps — but it comes with real trade-offs worth understanding before you commit.",
+    "live_link": "https://medium.com/@husneara/event-driven-architecture-eda-in-node-js-modern-strategies-and-challenges-a31d9789e54d"
+  },
+  {
+    "blogImage": "https://i.postimg.cc/0yQY91Pc/Stream-Buffer.webp",
+    "title": "Streams and Buffers in Node.js: Unleashing Efficient Data Handling",
+    "author": "Hosneara",
+    "category": "Node.js",
+    "platform": "medium",
+    "date": "Mar 1, 2025",
+    "readTime": "9 min read",
+    "excerpt": "Most Node.js developers skip streams and pay the price later. This breaks down how streams and buffers work together to handle large data efficiently.",
+    "live_link": "https://medium.com/@husneara/streams-and-buffers-in-node-js-unleashing-efficient-data-handling-08163fb2874b"
+  },
+  {
+    "blogImage": "https://i.postimg.cc/ydF9LVyY/Union-Intersection.webp",
+    "title": "Understanding Union and Intersection Types in TypeScript: A Comprehensive Guide",
+    "author": "Hosneara",
+    "category": "TypeScript",
+    "platform": "medium",
+    "date": "Mar 12, 2025",
+    "readTime": "7 min read",
+    "excerpt": "Union and intersection types are where TypeScript starts to feel like a superpower. This guide breaks them down with real examples you can use today.",
+    "live_link": "https://medium.com/@husneara/understanding-union-and-intersection-types-in-typescript-a-comprehensive-guide-d97310c5c467"
+  },
+  {
+    "blogImage": "https://i.postimg.cc/0yMztk8R/Email.webp",
+    "title": "Elevate Your Email Skills: Essential Tips for Professional Communication",
+    "author": "Hosneara",
+    "category": "Soft Skills",
+    "platform": "medium",
+    "date": "Mar 20, 2025",
+    "readTime": "5 min read",
+    "excerpt": "Writing clear, professional emails is a skill most developers overlook. These practical tips will immediately improve how you communicate at work.",
+    "live_link": "https://medium.com/@husneara/elevate-your-email-skills-essential-tips-for-professional-communication-9416b3bbae0e"
+  }
+]
