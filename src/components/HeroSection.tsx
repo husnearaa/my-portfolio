@@ -67,7 +67,6 @@ const HeroSection = () => {
               <div className="flex flex-wrap gap-3 pt-1">
                 <Button
                   size="lg"
-                  radius="sm"
                   className="bg-white text-black font-mono font-bold tracking-wide hover:bg-gray-200 transition-colors px-13 rounded-sm py-3 text-sm"
                 >
                   {/* <a

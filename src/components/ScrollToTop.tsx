@@ -1,5 +1,3 @@
-// Theme: Terminal / Dark — matches previous sections
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -56,7 +54,7 @@ export default function ScrollToTop() {
             cy={size / 2}
             r={radius}
             fill="none"
-            stroke="#00E67620"
+            stroke="#FFFFFF20"
             strokeWidth={strokeWidth}
           />
           {/* Progress fill */}
@@ -65,24 +63,24 @@ export default function ScrollToTop() {
             cy={size / 2}
             r={radius}
             fill="none"
-            stroke="#00E676"
+             stroke="#FFFFFF"
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeDasharray={circumference}
             strokeDashoffset={offset}
             className="transition-all duration-150"
-            style={{ filter: "drop-shadow(0 0 4px #00E67680)" }}
+            // style={{ filter: "drop-shadow(0 0 4px #00E67680)" }}
           />
         </svg>
 
         {/* Center button */}
-        <div className="w-8 h-8 rounded-sm bg-[#0f0f0d]  flex items-center justify-center hover:border-[#00E676]/60 hover:bg-[#00E676]/10 transition-all duration-200">
+        <div className="w-8 h-8 rounded-sm bg-[#0f0f0d]  flex items-center justify-center hover:border-white/60 hover:bg-white/10 transition-all duration-200">
           <svg
             width="14"
             height="14"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#00E676"
+       stroke="#FFFFFF"
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
