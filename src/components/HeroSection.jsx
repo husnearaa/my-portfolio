@@ -3,11 +3,10 @@
 import { Button } from "@heroui/react";
 import Link from "next/link";
 import Image from "next/image";
-import { FaGithub, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
-
 import myProfileImg from "@/assets/profile-Img.png";
-import { X } from "lucide-react";
+
 
 const socialLinks = [
   { name: "GitHub", href: "https://github.com/husnearaa", icon: FaGithub },

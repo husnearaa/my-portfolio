@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Lenis from "lenis";
 import { useEffect } from "react";
 import HeroSection from "@/components/HeroSection";
+import AboutSection from "@/components/AboutSection";
 // import {projects as projectData} from '../../data'
 
 
@@ -23,6 +24,7 @@ export default function Home() {
     <>
       <Navbar />
      <HeroSection />
+     <AboutSection />
     </>
   
   );
