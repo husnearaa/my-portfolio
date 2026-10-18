@@ -311,7 +311,7 @@ export default function ExperienceEducationSection() {
         {/* Heading */}
         <div className="w-11/12 mx-auto mb-14">
           <h2 className="font-mono text-3xl md:text-4xl font-black text-white">
-            Journey &{" "}
+            Education &{" "}
             <span className="text-white">Background</span>
           </h2>
           <p className="font-mono text-sm text-[#8a9a8e] mt-2">
