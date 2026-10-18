@@ -1,65 +1,72 @@
+
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
-import { motion, AnimatePresence } from "motion/react";
-
-/**
- * CustomCursor
- * Terminal-style dot cursor with binary/hex click particles.
- * White and gray theme for a black website background.
- */
+import { useState, useEffect, useRef, useCallback } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import type { Burst, Particle } from "@/types/custom-cursor";
 
 const CHARS = ["0", "1", "0", "1", "A", "F", "3", "C", "1", "0"];
 const PARTICLE_COUNT = 10;
 
-function randomChar() {
+function randomChar(): string {
   return CHARS[Math.floor(Math.random() * CHARS.length)];
 }
 
 export default function CustomCursor() {
   const [pos, setPos] = useState({ x: -100, y: -100 });
   const [isPointer, setIsPointer] = useState(false);
-  const [bursts, setBursts] = useState([]);
+  const [bursts, setBursts] = useState<Burst[]>([]);
+
   const burstId = useRef(0);
 
-  const handleMove = useCallback((e) => {
+  const handleMove = useCallback((e: MouseEvent) => {
     setPos({ x: e.clientX, y: e.clientY });
 
     const target = e.target;
+
     if (!(target instanceof Element)) return;
 
     const clickable =
       target.closest(
         "a, button, input, textarea, select, [role='button'], [data-cursor='pointer']"
-      ) != null;
+      ) !== null;
 
     setIsPointer(clickable);
   }, []);
 
-  const handleClick = useCallback((e) => {
+  const handleClick = useCallback((e: MouseEvent) => {
     const id = burstId.current++;
 
-    const particles = Array.from({ length: PARTICLE_COUNT }, (_, i) => {
-      const angle =
-        (Math.PI * 2 * i) / PARTICLE_COUNT + Math.random() * 0.4;
-      const distance = 40 + Math.random() * 50;
+    const particles: Particle[] = Array.from(
+      { length: PARTICLE_COUNT },
+      (_, i) => {
+        const angle =
+          (Math.PI * 2 * i) / PARTICLE_COUNT + Math.random() * 0.4;
 
-      return {
-        key: `${id}-${i}`,
-        char: randomChar(),
-        dx: Math.cos(angle) * distance,
-        dy: Math.sin(angle) * distance,
-        delay: Math.random() * 0.05,
-      };
-    });
+        const distance = 40 + Math.random() * 50;
+
+        return {
+          key: `${id}-${i}`,
+          char: randomChar(),
+          dx: Math.cos(angle) * distance,
+          dy: Math.sin(angle) * distance,
+          delay: Math.random() * 0.05,
+        };
+      }
+    );
 
     setBursts((prev) => [
       ...prev,
-      { id, x: e.clientX, y: e.clientY, particles },
+      {
+        id,
+        x: e.clientX,
+        y: e.clientY,
+        particles,
+      },
     ]);
 
     setTimeout(() => {
-      setBursts((prev) => prev.filter((b) => b.id !== id));
+      setBursts((prev) => prev.filter((burst) => burst.id !== id));
     }, 700);
   }, []);
 
@@ -77,7 +84,7 @@ export default function CustomCursor() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999]">
-      {/* White core dot cursor */}
+      {/* White core dot */}
       <motion.div
         className="fixed rounded-full"
         style={{
@@ -94,8 +101,18 @@ export default function CustomCursor() {
           height: dotSize,
         }}
         transition={{
-          x: { type: "spring", stiffness: 800, damping: 40, mass: 0.3 },
-          y: { type: "spring", stiffness: 800, damping: 40, mass: 0.3 },
+          x: {
+            type: "spring",
+            stiffness: 800,
+            damping: 40,
+            mass: 0.3,
+          },
+          y: {
+            type: "spring",
+            stiffness: 800,
+            damping: 40,
+            mass: 0.3,
+          },
           width: { duration: 0.15 },
           height: { duration: 0.15 },
         }}
@@ -117,18 +134,26 @@ export default function CustomCursor() {
           scale: isPointer ? 1.3 : 1,
         }}
         transition={{
-          x: { type: "spring", stiffness: 200, damping: 25 },
-          y: { type: "spring", stiffness: 200, damping: 25 },
+          x: {
+            type: "spring",
+            stiffness: 200,
+            damping: 25,
+          },
+          y: {
+            type: "spring",
+            stiffness: 200,
+            damping: 25,
+          },
           scale: { duration: 0.2 },
         }}
       />
 
-      {/* White and gray click particles */}
+      {/* Particle burst */}
       <AnimatePresence>
         {bursts.map((burst) =>
-          burst.particles.map((p, i) => (
+          burst.particles.map((particle, i) => (
             <motion.span
-              key={p.key}
+              key={particle.key}
               className="fixed font-mono text-xs font-bold"
               style={{
                 left: burst.x,
@@ -136,27 +161,32 @@ export default function CustomCursor() {
                 color: i % 2 === 0 ? "#ffffff" : "#9ca3af",
                 textShadow: "0 0 6px rgba(255,255,255,0.4)",
               }}
-              initial={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+              initial={{
+                opacity: 1,
+                x: 0,
+                y: 0,
+                scale: 1,
+              }}
               animate={{
                 opacity: 0,
-                x: p.dx,
-                y: p.dy,
+                x: particle.dx,
+                y: particle.dy,
                 scale: 0.6,
               }}
               exit={{ opacity: 0 }}
               transition={{
                 duration: 0.6,
-                delay: p.delay,
+                delay: particle.delay,
                 ease: "easeOut",
               }}
             >
-              {p.char}
+              {particle.char}
             </motion.span>
           ))
         )}
       </AnimatePresence>
 
-      {/* White click flash ring */}
+      {/* Expanding click ring */}
       <AnimatePresence>
         {bursts.map((burst) => (
           <motion.div
@@ -167,7 +197,11 @@ export default function CustomCursor() {
               top: burst.y - 4,
               borderColor: "#ffffff",
             }}
-            initial={{ width: 8, height: 8, opacity: 0.9 }}
+            initial={{
+              width: 8,
+              height: 8,
+              opacity: 0.9,
+            }}
             animate={{
               width: 60,
               height: 60,
@@ -175,7 +209,10 @@ export default function CustomCursor() {
               left: burst.x - 30,
               top: burst.y - 30,
             }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
+            transition={{
+              duration: 0.45,
+              ease: "easeOut",
+            }}
           />
         ))}
       </AnimatePresence>
