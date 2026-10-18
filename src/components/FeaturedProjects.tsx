@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Button } from "@heroui/react";
 import {
@@ -9,7 +9,20 @@ import {
   ArrowUpRightFromSquare,
 } from "@gravity-ui/icons";
 import Link from "next/link";
-export default function FeaturedProjects({ data }) {
+
+type Project = {
+  id: string | number;
+  title: string;
+  image: string;
+  overview: string;
+  stack: string[];
+};
+
+type FeaturedProjectsProps = {
+  data: Project[];
+};
+
+export default function FeaturedProjects({ data }: FeaturedProjectsProps) {
   const projects = [...data];
 
   const slides = projects.slice(0, 3);
@@ -17,17 +30,17 @@ export default function FeaturedProjects({ data }) {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [paused, setPaused] = useState(false);
-  const timerRef = useRef(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const go = useCallback(
-    (dir) => {
+    (dir: number) => {
       setDirection(dir);
       setIndex((prev) => (prev + dir + total) % total);
     },
     [total],
   );
 
-  const goTo = (i) => {
+  const goTo = (i: number) => {
     setDirection(i > index ? 1 : -1);
     setIndex(i);
   };
@@ -35,8 +48,14 @@ export default function FeaturedProjects({ data }) {
   // autoplay, pauses on hover
   useEffect(() => {
     if (paused || total <= 1) return;
+
     timerRef.current = setInterval(() => go(1), 6000);
-    return () => clearInterval(timerRef.current);
+
+    return () => {
+      if (timerRef.current !== null) {
+        clearInterval(timerRef.current);
+      }
+    };
   }, [paused, go, total]);
 
   if (!total) return null;
@@ -44,9 +63,15 @@ export default function FeaturedProjects({ data }) {
   const project = slides[index];
 
   const variants = {
-    enter: (dir) => ({ opacity: 0, x: dir > 0 ? 48 : -48 }),
+    enter: (dir: number) => ({
+      opacity: 0,
+      x: dir > 0 ? 48 : -48,
+    }),
     center: { opacity: 1, x: 0 },
-    exit: (dir) => ({ opacity: 0, x: dir > 0 ? -48 : 48 }),
+    exit: (dir: number) => ({
+      opacity: 0,
+      x: dir > 0 ? -48 : 48,
+    }),
   };
 
   return (
@@ -110,7 +135,10 @@ export default function FeaturedProjects({ data }) {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 0.45,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="flex flex-col gap-8 lg:flex-row lg:items-stretch lg:gap-10"
             >
               {/* image — 2/3 width on large screens */}
@@ -124,7 +152,7 @@ export default function FeaturedProjects({ data }) {
                   />
                 </div>
 
-                {/* corner brackets — same accent used on your headshot frame */}
+                {/* corner brackets */}
                 <span className="pointer-events-none absolute left-3 top-3 h-5 w-5 border-l-2 border-t-2 border-white/70" />
                 <span className="pointer-events-none absolute bottom-3 right-3 h-5 w-5 border-b-2 border-r-2 border-white/70" />
 
@@ -149,7 +177,7 @@ export default function FeaturedProjects({ data }) {
                 </p>
 
                 <div className="flex flex-wrap gap-2">
-                  {project.stack.map((tech) => (
+                  {project.stack.map((tech: string) => (
                     <span
                       key={tech}
                       className="rounded border border-white/25 px-2 py-1 font-mono text-[11px] text-white/90"
@@ -160,19 +188,19 @@ export default function FeaturedProjects({ data }) {
                 </div>
 
                 <div className="flex flex-wrap gap-3 pt-2">
-                  <Link href={`/projects/${project.id}`}>
+                  <Link
+                    href={`/projects/${project.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Button
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      color="success"
-                      variant="solid"
-                      radius="sm"
-                      startContent={
-                        <ArrowUpRightFromSquare width={16} height={16} />
-                      }
+                      variant="primary"
                       className="bg-white font-mono text-xs text-black hover:bg-white py-2 px-4 rounded-sm"
                     >
-                      Show Details
+                      <span className="inline-flex items-center gap-2">
+                        <ArrowUpRightFromSquare width={16} height={16} />
+                        Show Details
+                      </span>
                     </Button>
                   </Link>
                 </div>
@@ -200,6 +228,7 @@ export default function FeaturedProjects({ data }) {
                 {String(index + 1).padStart(2, "0")} —{" "}
                 {String(total).padStart(2, "0")}
               </span>
+
               <button
                 onClick={() => go(-1)}
                 aria-label="Previous project"
@@ -207,6 +236,7 @@ export default function FeaturedProjects({ data }) {
               >
                 <CircleChevronLeft width={16} height={16} />
               </button>
+
               <button
                 onClick={() => go(1)}
                 aria-label="Next project"
